@@ -7,6 +7,14 @@ public class LinkedList {
 		head = null;
 	}
 
+	public IntNode getHead() {
+		return head;
+	}
+
+	public void setHead(IntNode head) {
+		this.head = head;
+	}
+
 	public void insertFirst(int d) {
 		IntNode new_node = new IntNode(d);
 		if (head == null) {
@@ -112,10 +120,100 @@ public class LinkedList {
 			iter = iter.getNext();
 
 		if (iter.getNext() == null) {
-			d= iter.getNext().getData();
+			d = iter.getNext().getData();
 			iter.setNext(iter.getNext().getNext());
 		}
 		return d;
+	}
+
+	public void insert_before_data(int d, int key) {
+		IntNode new_node = new IntNode(d);
+		if (head == null) {
+			System.out.println("List is Empty inserting your node as head");
+			head = new_node;
+			return;
+		}
+		if (head.getData() == key) {
+			new_node.setNext(head);
+			head = new_node;
+			return;
+		}
+		IntNode iter = head;
+		while (iter.getNext() != null && iter.getNext().getData() != key)
+			iter = iter.getNext();
+		if (iter.getNext() == null) {
+			System.out.println("Key is not present in the list");
+			return;
+		}
+		new_node.setNext(iter.getNext());
+		iter.setNext(new_node);
+	}
+
+	public void insert_after_data(int d, int key) {
+		IntNode new_node = new IntNode(d);
+		if (head == null) {
+			head = new_node;
+			return;
+		}
+		IntNode iter = head;
+		while (iter.getData() != key && iter != null)
+			iter = iter.getNext();
+
+		new_node.setNext(iter.getNext());
+		iter.setNext(new_node);
+		return;
+	}
+
+	public void insert_sorted(int d) {
+		IntNode new_node = new IntNode(d);
+		if ((head == null) || (head.getData() > d)) {
+			new_node.setNext(head);
+			head = new_node;
+			return;
+		}
+		IntNode iter = head;
+		while ((iter.getNext() != null) && (iter.getNext().getData() < d))
+			iter = iter.getNext();
+
+		new_node.setNext(iter.getNext());
+		iter.setNext(new_node);
+		return;
+	}
+
+	public LinkedList ll_concat(LinkedList ll2) {
+		LinkedList res = new LinkedList();
+		IntNode iter = head;
+		while (iter != null) {
+			res.insertLast(iter.getData());
+			iter = iter.getNext();
+		}
+		iter = ll2.getHead();
+		while (iter != null) {
+			res.insertLast(iter.getData());
+			iter = iter.getNext();
+		}
+		return res;
+	}
+
+	public void revers_ll(LinkedList ll) {
+		IntNode prev = null;
+		IntNode curr = ll.head;
+		IntNode next;
+
+		while (curr != null) {
+			next = curr.getNext();
+			curr.setNext(prev);
+			prev = curr;
+			curr = next;
+			
+		}
+		ll.head = prev;
+		IntNode iter = head;
+		while(iter!=null)
+		{
+			System.out.println(iter.getData()+": "+iter.getNext());
+			iter = iter.getNext();
+		}
 	}
 
 	public void display() {
@@ -136,6 +234,8 @@ public class LinkedList {
 
 	public static void main(String[] args) {
 		LinkedList ll = new LinkedList();
+		LinkedList ll2 = new LinkedList();
+
 		System.out.println("\n");
 		ll.insertFirst(12);
 		ll.insertLast(17);
@@ -147,6 +247,18 @@ public class LinkedList {
 		ll.deleteFirst();
 		System.out.println("\n");
 		ll.display();
+		
+//		ll.revers_ll(ll);
+		System.out.println("\n\n");
+//		ll.display();
+		
+		ll2.insert_sorted(10);
+		ll2.insert_sorted(20);
+		ll2.insert_sorted(15);
+		
+		//ll2.display();
+		
+		System.out.println(ll.ll_concat(ll2));
 
 	}
 
