@@ -19,32 +19,32 @@ class StudentStack
 		top = -1;
 	}
 	
-	public void push(Student d)
-	{
-		if(top==arr.length-1)
-		{
-			System.out.println("Stack OverFlow...");
-			return;
-		}
-		top = top+1;
-		arr[top]=d;
-		return;
-	}
-	
-	public Student pop()
-	{
-		//System.out.println("thstrh");
-		StudentStack d = null;
-		if(top == -1)
-		{
-			System.out.println("Stack is Empty");
-			return d;
-		}
-		d = arr[top];
-		top = top-1;
-		return d;
-	}
-	
+//	public void push(Student d)
+//	{
+//		if(top==arr.length-1)
+//		{
+//			System.out.println("Stack OverFlow...");
+//			return;
+//		}
+//		top = top+1;
+//		arr[top]=d;
+//		return;
+//	}
+//	
+//	public Student pop()
+//	{
+//		//System.out.println("thstrh");
+//		StudentStack d = null;
+//		if(top == -1)
+//		{
+//			System.out.println("Stack is Empty");
+//			return d;
+//		}
+//		d = arr[top];
+//		top = top-1;
+//		return d;
+//	}
+//	
 	public StudentStack peek()
 	{
 		StudentStack d = null;
@@ -109,11 +109,11 @@ public class MyStudentStack
 				float m2 = sc.nextFloat();
 				float m3 = sc.nextFloat();
 				stud = new Student(rno, name, m1, m2, m3);
-				s1.push(stud);
+//				s1.push(stud);
 				break;
 				
 			case 2:
-				System.out.println(s1.pop());
+//				System.out.println(s1.pop());
 				break;
 			
 			case 3:
