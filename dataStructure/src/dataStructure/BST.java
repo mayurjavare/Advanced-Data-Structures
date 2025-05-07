@@ -48,11 +48,9 @@ public class BST {
 	}
 
 	private BTNode insert(BTNode r, int d) {
-		if (r == null)
-		{
+		if (r == null) {
 			return new BTNode(d);
 		}
-			
 
 		if (d < r.getData())
 			r.setLeft(insert(r.getLeft(), d));
@@ -65,22 +63,22 @@ public class BST {
 
 		return r;
 	}
-	
-	public int search_rec(int d)
-	{
+
+	public int search_rec(int d) {
 		return search(root, d).getData();
 	}
+
 	private BTNode search(BTNode r, int d) {
-		
-		if(r==null)
+
+		if (r == null)
 			return null;
-		
-		if(d<r.getData())
+
+		if (d < r.getData())
 			return search(r.getLeft(), d);
-		
-		else if(d>r.getData())
+
+		else if (d > r.getData())
 			return search(r.getRight(), d);
-		
+
 		else
 			return r;
 	}
