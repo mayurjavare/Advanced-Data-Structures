@@ -64,14 +64,14 @@ public class BST {
 		return r;
 	}
 
-	public int search_rec(int d) {
-		return search(root, d).getData();
+	public void search_rec(int d) {
+		System.out.println(search(root, d));
 	}
 
-	private BTNode search(BTNode r, int d) {
+	private boolean search(BTNode r, int d) {
 
 		if (r == null)
-			return null;
+			return false;
 
 		if (d < r.getData())
 			return search(r.getLeft(), d);
@@ -80,10 +80,50 @@ public class BST {
 			return search(r.getRight(), d);
 
 		else
-			return r;
+			return true;
 	}
 
-	public void display_levelwise() {
+	public void delete(int d) {
+		del_rec(root, d);
+	}
+
+	public BTNode del_rec(BTNode r, int d) {
+
+		BTNode succ;
+		if (r == null) {
+			System.out.println("Empty");
+			return null;
+		}
+		if (d < r.getData())
+			r.setLeft(del_rec(r.getLeft(), d));
+
+		else if (d > r.getData())
+			r.setRight(del_rec(r.getRight(), d));
+
+		else {
+			if ((r.getLeft() != null) && (r.getRight() != null)) {
+				succ = r.getRight();
+				while (succ.getLeft() != null)
+					succ = succ.getLeft();
+
+				r.setData(succ.getData());
+				r.setRight(del_rec(r.getRight(), succ.getData()));
+			} else {
+				if (r.getLeft() != null)
+					r = r.getLeft();
+
+				else if (r.getRight() != null)
+					r = r.getRight();
+
+				else
+					r = null;
+			}
+		}
+
+		return r;
+	}
+
+	public void display_preOrder() {
 		if (root == null) {
 			System.out.println("Root is null");
 			return;
@@ -118,9 +158,15 @@ public class BST {
 		b.insert_rec(55);
 		b.insert_rec(23);
 		b.insert_rec(1);
-		b.display_levelwise();
+		b.display_preOrder();
 		System.out.println();
-		System.out.println(b.search_rec(27));
+		b.search_rec(21);
+		b.display_preOrder();
+		System.out.println();
+		b.delete(1);
+		b.display_preOrder();
+		
+		
 
 	}
 }
