@@ -8,7 +8,7 @@ class record_info {
 enum record_type {
 	EMPTY, OCCUPIED, DELETED
 }
-
+//main hash
 public class MyHash {
 	private record_info table[];
 
