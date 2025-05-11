@@ -4,55 +4,57 @@ import java.util.Scanner;
 
 class StudentStack
 {
-	public StudentStack arr[];
+	public Student arr[];
 	private int top;
 	
 	public StudentStack() 
 	{
-		arr = new StudentStack[10];
+		arr = new Student[10];
 		top = -1;
 	}
 
 	public StudentStack(int s)
 	{
-		arr = new StudentStack[s];
+		arr = new Student[s];
 		top = -1;
 	}
 	
-//	public void push(Student d)
-//	{
-//		if(top==arr.length-1)
-//		{
-//			System.out.println("Stack OverFlow...");
-//			return;
-//		}
-//		top = top+1;
-//		arr[top]=d;
-//		return;
-//	}
-//	
-//	public Student pop()
-//	{
-//		//System.out.println("thstrh");
-//		StudentStack d = null;
-//		if(top == -1)
-//		{
-//			System.out.println("Stack is Empty");
-//			return d;
-//		}
-//		d = arr[top];
-//		top = top-1;
-//		return d;
-//	}
-//	
-	public StudentStack peek()
+	public void push(Student s)
 	{
-		StudentStack d = null;
+		
+		if(top==arr.length-1)
+		{
+			System.out.println("Stack OverFlow...");
+			return;
+		}
+		top = top+1;
+		arr[top]=s;
+		return;
+	}
+	
+	public Student pop()
+	{
+		//System.out.println("thstrh");
+		Student d = null;
+		if(top == -1)
+		{
+			System.out.println("Stack is Empty");
+			return d;
+		}
+		d = arr[top];
+		top = top-1;
+		return d;
+	}
+
+	public Student peek()
+	{
+		Student d = null;
 		if(top==-1)
 		{
 			System.out.println("Stack is Empty");
 			return d;
 		}
+		d= arr[top];
 		return arr[top];
 	}
 	
@@ -109,11 +111,11 @@ public class MyStudentStack
 				float m2 = sc.nextFloat();
 				float m3 = sc.nextFloat();
 				stud = new Student(rno, name, m1, m2, m3);
-//				s1.push(stud);
+				s1.push(stud);
 				break;
 				
 			case 2:
-//				System.out.println(s1.pop());
+				System.out.println(s1.pop());
 				break;
 			
 			case 3:
