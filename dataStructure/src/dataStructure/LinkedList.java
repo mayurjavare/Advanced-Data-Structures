@@ -1,7 +1,7 @@
 package dataStructure;
 
 public class LinkedList {
-	private IntNode head;
+	protected IntNode head;
 
 	public LinkedList() {
 		head = null;
@@ -225,7 +225,7 @@ public class LinkedList {
 		int cnt = 0;
 
 		while (iter != null) {
-			System.out.println(iter.getData() + " -> " + " " + iter.getNext());
+			System.out.print(iter.getData() + " -> ");
 			iter = iter.getNext();
 			cnt++;
 		}

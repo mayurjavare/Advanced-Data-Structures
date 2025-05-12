@@ -165,8 +165,6 @@ public class BST {
 		System.out.println();
 		b.delete(1);
 		b.display_preOrder();
-		
-		
 
 	}
 }
