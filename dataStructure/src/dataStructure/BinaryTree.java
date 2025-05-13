@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BinaryTree {
-	private BTNode root;
+	private static BTNode root;
 
 	public BTNode getRoot() {
 		return root;
@@ -84,16 +84,34 @@ public class BinaryTree {
 
 	}
 
+	public static int height(BinaryTree bt) {
+		return heightOfBT(root);
+	}
+
+	private static int heightOfBT(BTNode root) {
+
+		if (root == null)
+			return 0;
+
+		int leftHt = heightOfBT(root.getLeft());
+		int rightHt = heightOfBT(root.getRight());
+		if (leftHt > rightHt)
+			return leftHt + 1;
+		else
+			return rightHt + 1;
+	}
+
 	public static void main(String[] args) {
 		BinaryTree bt = new BinaryTree();
-		//bt.createNode(50);
-		
+		// bt.createNode(50);
+
 		bt.insert_levelwise(10);
 		bt.insert_levelwise(20);
 		bt.insert_levelwise(30);
 		bt.insert_levelwise(40);
 		bt.insert_levelwise(15);
 		bt.display_levelwise();
-		
+//		height(bt);
+
 	}
 }

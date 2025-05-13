@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class BinaryTreeSumations {
 
-	private BTNode root;
+	private static BTNode root;
 
 	public BTNode getRoot() {
 		return root;
@@ -143,6 +143,23 @@ public class BinaryTreeSumations {
 		}
 		return sum;
 	}
+	
+	public static int height(BinaryTreeSumations bt) {
+		return heightOfBT(root);
+	}
+
+	private static int heightOfBT(BTNode root) {
+
+		if (root == null)
+			return 0;
+
+		int leftHt = heightOfBT(root.getLeft());
+		int rightHt = heightOfBT(root.getRight());
+		if (leftHt > rightHt)
+			return leftHt + 1;
+		else
+			return rightHt + 1;
+	}
 
 	public static void main(String[] args) {
 		BinaryTreeSumations bts = new BinaryTreeSumations();
@@ -152,9 +169,13 @@ public class BinaryTreeSumations {
 		bts.insertByLevel(40);
 		bts.insertByLevel(50);
 		bts.insertByLevel(100);
+		bts.insertByLevel(66);
+		bts.insertByLevel(88);
 
 //		bts.displayByLevel();
 		System.out.println(bts.additionAllLeaf());
 		System.out.println(bts.additionAllNonleaf());
+		
+		System.out.println(height(bts));
 	}
 }
